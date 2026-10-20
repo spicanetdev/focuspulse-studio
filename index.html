@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FocusPulse Studio — Autonomous Pomodoro & Sprint Velocity Web App — FocusPulse Studio</title>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-badge">FP</span>
+        <div>
+          <h1>FocusPulse Studio — Autonomous Pomodoro & Sprint Velocity Web App</h1>
+          <p class="subtitle">Create a greenfield repository and build FocusPulse Studio, a responsive Pomodoro timer and sprint velocity tracker web application with interactive state, automated tests, and CI.</p>
+        </div>
+      </div>
+      <div class="topbar-meta">
+        <span class="pill" id="streak-pill">Streak: 0 sprints</span>
+        <span class="pill pill-accent">Built by Protaura Mission 01a159d8-6910-7f58-b140-16340903a46c</span>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <section class="card timer-card">
+        <div class="mode-tabs" role="tablist">
+          <button class="mode-tab active" data-mode="focus" data-minutes="25">
+            Focus Sprint (25m)
+          </button>
+          <button class="mode-tab" data-mode="short_break" data-minutes="5">
+            Short Recharge (5m)
+          </button>
+          <button class="mode-tab" data-mode="deep_work" data-minutes="50">
+            Deep Work (50m)
+          </button>
+        </div>
+
+        <div class="timer-display" id="timer-display" aria-live="polite">25:00</div>
+        <p class="active-task-banner" id="active-task-banner">
+          Select or add a sprint task below to begin focused execution.
+        </p>
+
+        <div class="timer-controls">
+          <button id="btn-start-pause" class="btn btn-primary">Start Sprint</button>
+          <button id="btn-complete-sprint" class="btn btn-success">Complete Sprint Now</button>
+          <button id="btn-reset" class="btn btn-secondary">Reset</button>
+        </div>
+
+        <div class="metrics-strip">
+          <div class="metric-box">
+            <span class="metric-label">Completed Sprints</span>
+            <strong class="metric-value" id="metric-sprints">0</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Focused Minutes</span>
+            <strong class="metric-value" id="metric-minutes">0</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Tasks Shipped</span>
+            <strong class="metric-value" id="metric-tasks">0</strong>
+          </div>
+          <div class="metric-box">
+            <span class="metric-label">Focus Score</span>
+            <strong class="metric-value" id="metric-score">100%</strong>
+          </div>
+        </div>
+      </section>
+
+      <section class="card tasks-card">
+        <div class="section-header">
+          <h2>Sprint Backlog</h2>
+          <span class="muted" id="backlog-counter">0 open</span>
+        </div>
+
+        <form id="task-form" class="task-form">
+          <input
+            type="text"
+            id="task-title-input"
+            placeholder="Add a concrete deliverable for this sprint..."
+            required
+          />
+          <select id="task-priority-input" aria-label="Priority">
+            <option value="high">High</option>
+            <option value="medium" selected>Medium</option>
+            <option value="low">Low</option>
+          </select>
+          <input
+            type="number"
+            id="task-estimate-input"
+            min="1"
+            max="12"
+            value="2"
+            title="Estimated sprints"
+          />
+          <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+
+        <ul id="task-list" class="task-list"></ul>
+      </section>
+
+      <section class="card log-card">
+        <div class="section-header">
+          <h2>Session Telemetry &amp; Sprint Log</h2>
+          <button id="btn-export-json" class="btn btn-secondary btn-sm">Export JSON</button>
+        </div>
+        <ul id="session-log" class="session-log"></ul>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
